@@ -1,0 +1,10 @@
+name: superset
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - boa
+  - conda
+  - conda-build
+  - mamba
+  

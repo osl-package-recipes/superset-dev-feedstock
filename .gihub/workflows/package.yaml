@@ -1,0 +1,59 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 23 * * *'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    name: Build ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # os: ["ubuntu-latest", "macos-latest"]
+        os: ["ubuntu-latest"]
+
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+        fetch-depth: 0
+
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          miniconda-version: "latest"
+          mamba-version: "*"
+          environment-file: conda/base.yaml
+          channels: conda-forge,nodefaults
+          activate-environment: superset
+          use-mamba: true
+          miniforge-variant: Mambaforge
+          
+      - name: copy and prepare recipe
+        run: |
+          make prepare-recipe
+
+      - name: conda build
+        run: |
+          conda mambabuild .
+
+      - name: publish conda package
+        env: # Or as an environment variable
+          ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+        if: ${{ success() && (github.event_name == 'push' || github.event_name == 'schedule') }}
+        run: |
+          anaconda --token $ANACONDA_TOKEN upload --user opensciencelabs --skip-existing /usr/share/miniconda/envs/superset/conda-bld/linux-64/superset-*.tar.bz2
