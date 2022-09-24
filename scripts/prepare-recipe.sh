@@ -3,11 +3,11 @@
 set -ex
 
 rm -f meta.yaml
-wget https://raw.githubusercontent.com/conda-forge/superset-feedstock/main/recipe/meta.yaml
+wget https://raw.githubusercontent.com/conda-forge/superset-feedstock/master/recipe/meta.yaml
 export URL_PATTERN="https\:\/\/pypi\.io\/packages\/source\/.*\.tar\.gz$"
 export GIT_URL="https://github.com/apache/superset.git"
 export BUILD_NUMBER=1
-export BRANCH_NAME="main"
+export BRANCH_NAME="master"
 # export URL_FILE="${URL_ROOT}/master.tar.gz"
 # export PKG_VERSION=$(conda search superset|tail -n 1|grep -o -E '[0-9]+\.[0-9]+\.[0-9]+')
 
