@@ -39,7 +39,7 @@ jobs:
         with:
           miniconda-version: "latest"
           mamba-version: "*"
-          environment-file: conda/base.yaml
+          environment-file: conda/build.yaml
           channels: conda-forge,nodefaults
           activate-environment: superset
           use-mamba: true
