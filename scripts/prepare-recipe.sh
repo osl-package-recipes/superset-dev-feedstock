@@ -4,7 +4,6 @@ set -ex
 
 rm -f meta.yaml
 cp patches/meta.yaml .
-wget https://raw.githubusercontent.com/conda-forge/superset-feedstock/master/recipe/meta.yaml
 export URL_PATTERN="https\:\/\/pypi\.io\/packages\/source\/.*\.tar\.gz$"
 export GIT_URL="https://github.com/apache/superset.git"
 export BUILD_NUMBER=1
