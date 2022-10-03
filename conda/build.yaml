@@ -1,4 +1,4 @@
-name: superset
+name: conda-build
 channels:
   - conda-forge
   - nodefaults

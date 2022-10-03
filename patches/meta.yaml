@@ -13,14 +13,14 @@ source:
 build:
   number: 1
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install --no-deps . -vv
   entry_points:
     - superset = superset.cli.main:superset
 
 requirements:
   host:
     - pip
-    - python >=3.7,<3.10
+    - python >=3.8,<3.10
   run:
     - backoff>=1.8.0
     - bleach>=3.0.2,<4.0.0
@@ -66,7 +66,7 @@ requirements:
     - simplejson>=3.15.0
     - slackclient 2.5.0  # PINNED! slack changes file upload api in the future versions
     - sqlalchemy>=1.4,<2
-    - sqlalchemy-utils>=0.38.2,<0.39
+    - sqlalchemy-utils>=0.38.3,<0.39
     - sqlparse>=0.4.3,<0.5
     - tabulate 0.8.9
       # needed to support Literal (3.8) and TypeGuard (3.10)
