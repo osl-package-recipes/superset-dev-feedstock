@@ -6,7 +6,7 @@ rm -rf recipe/*
 mkdir -p recipe/
 
 cp patches/meta.yaml ./recipe
-wget https://raw.githubusercontent.com/conda-forge/superset-feedstock/master/recipe/run_test.sh -O ./recipe/run_test.sh
+wget https://raw.githubusercontent.com/conda-forge/superset-feedstock/main/recipe/run_test.sh -O ./recipe/run_test.sh
 
 export URL_PATTERN="https\:\/\/pypi\.io\/packages\/source\/.*\.tar\.gz$"
 export GIT_URL="https://github.com/apache/superset.git"
