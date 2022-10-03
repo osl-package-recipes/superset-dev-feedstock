@@ -39,17 +39,15 @@ jobs:
           mamba-version: "*"
           environment-file: conda/build.yaml
           channels: conda-forge,nodefaults
-          activate-environment: superset
+          activate-environment: conda-build
           use-mamba: true
           miniforge-variant: Mambaforge
           
       - name: copy and prepare recipe
-        run: |
-          make prepare-recipe
+        run: make prepare-recipe
 
       - name: conda build
-        run: |
-          conda mambabuild .
+        run: make conda-build
 
       - name: publish conda package
         env: # Or as an environment variable
