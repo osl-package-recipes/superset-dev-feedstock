@@ -69,9 +69,13 @@ requirements:
     - sqlalchemy-utils>=0.38.3,<0.39
     - sqlparse>=0.4.3,<0.5
     - tabulate 0.8.9
-      # needed to support Literal (3.8) and TypeGuard (3.10)
+    # needed to support Literal (3.8) and TypeGuard (3.10)
     - typing-extensions>=3.10,<4
     - wtforms-json
+    # extras pinning
+    - werkzeug 2.0.3
+    - markupsafe 2.0.1
+    - wtforms 2.3.0
 
 test:
   imports:
