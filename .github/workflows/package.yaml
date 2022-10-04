@@ -49,4 +49,4 @@ jobs:
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
         if: ${{ success() && (github.event_name == 'push' || github.event_name == 'schedule') }}
         run: |
-          anaconda --token $ANACONDA_TOKEN upload --user opensciencelabs --skip-existing /usr/share/miniconda/envs/superset/conda-bld/linux-64/superset-*.tar.bz2
+          anaconda --token $ANACONDA_TOKEN upload --user opensciencelabs --skip-existing /usr/share/miniconda3/envs/conda-build/conda-bld/noarch/superset-*.tar.bz2
