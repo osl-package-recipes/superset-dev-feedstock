@@ -17,7 +17,7 @@ build:
   entry_points:
     - superset = superset.cli.main:superset
   script_env:
-    - SECRET_KEY=apachesupersetcondapackage
+    - SUPERSET_SECRET_KEY=0VpiIy2EFWl1Hs2a7OKu57xklxjWZZf+TPrz5kGFTMZwsJnbPgxwV7sx
 
 requirements:
   host:
