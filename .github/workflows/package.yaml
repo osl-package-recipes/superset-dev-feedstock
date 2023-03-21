@@ -5,6 +5,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
   schedule:
     # https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule
     # * is a special character in YAML so you have to quote this string
@@ -47,6 +48,6 @@ jobs:
       - name: publish conda package
         env: # Or as an environment variable
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-        if: ${{ success() && (github.event_name == 'push' || github.event_name == 'schedule') }}
+        if: ${{ success() && (github.event_name == 'schedule') || github.event_name == 'workflow_dispatch'}}
         run: |
           anaconda --token $ANACONDA_TOKEN upload --user opensciencelabs --skip-existing /usr/share/miniconda3/envs/conda-build/conda-bld/noarch/superset-*.tar.bz2
